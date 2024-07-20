@@ -52,7 +52,7 @@ defmodule Soroban.RPC.GetTransactionsTest do
     GetTransactionsCannedClientImpl,
     GetTransactionsResponse,
     Server,
-    TransactionsPayload
+    LedgerTransactionsPayload
   }
 
   setup do
@@ -65,7 +65,7 @@ defmodule Soroban.RPC.GetTransactionsTest do
     start_ledger = 1000
     limit = 2
 
-    transaction_payload = TransactionsPayload.new(start_ledger: start_ledger, limit: limit)
+    transaction_payload = LedgerTransactionsPayload.new(start_ledger: start_ledger, limit: limit)
 
     %{payload: transaction_payload, server: Server.testnet()}
   end

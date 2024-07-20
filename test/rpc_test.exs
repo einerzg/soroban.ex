@@ -373,7 +373,7 @@ defmodule Soroban.RPCTest do
     Server,
     SimulateTransactionResponse,
     TopicFilter,
-    TransactionsPayload
+    LedgerTransactionsPayload
   }
 
   alias Soroban.Types.Symbol
@@ -522,7 +522,7 @@ defmodule Soroban.RPCTest do
       cursor = "8111217537191937"
 
       transaction_payload =
-        TransactionsPayload.new(start_ledger: start_ledger, limit: limit, cursor: cursor)
+        LedgerTransactionsPayload.new(start_ledger: start_ledger, limit: limit, cursor: cursor)
 
       %{payload: transaction_payload}
     end

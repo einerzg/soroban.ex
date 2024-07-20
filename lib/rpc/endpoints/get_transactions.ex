@@ -4,13 +4,13 @@ defmodule Soroban.RPC.GetTransactions do
   """
   @behaviour Soroban.RPC.Endpoint.Spec
 
-  alias Soroban.RPC.{GetTransactionsResponse, Request, TransactionsPayload}
+  alias Soroban.RPC.{GetTransactionsResponse, Request, LedgerTransactionsPayload}
 
   @endpoint "getTransactions"
 
   @impl true
-  def request(server, %TransactionsPayload{} = transactions_payload) do
-    payload = TransactionsPayload.to_request_args(transactions_payload)
+  def request(server, %LedgerTransactionsPayload{} = transactions_payload) do
+    payload = LedgerTransactionsPayload.to_request_args(transactions_payload)
 
     server
     |> Request.new(@endpoint)

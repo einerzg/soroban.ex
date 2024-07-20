@@ -1,6 +1,6 @@
-defmodule Soroban.RPC.TransactionsPayloadTest do
+defmodule Soroban.RPC.LedgerTransactionsPayloadTest do
   use ExUnit.Case
-  alias Soroban.RPC.TransactionsPayload
+  alias Soroban.RPC.LedgerTransactionsPayload
 
   setup do
     start_ledger = 674_736
@@ -8,7 +8,7 @@ defmodule Soroban.RPC.TransactionsPayloadTest do
     limit = 2
 
     payload =
-      TransactionsPayload.new(
+      LedgerTransactionsPayload.new(
         start_ledger: start_ledger,
         cursor: cursor,
         limit: limit
@@ -28,11 +28,11 @@ defmodule Soroban.RPC.TransactionsPayloadTest do
       cursor: cursor,
       limit: limit
     } do
-      %TransactionsPayload{
+      %LedgerTransactionsPayload{
         start_ledger: ^start_ledger,
         pagination: %{cursor: ^cursor, limit: ^limit}
       } =
-        TransactionsPayload.new(
+        LedgerTransactionsPayload.new(
           start_ledger: start_ledger,
           cursor: cursor,
           limit: limit
@@ -40,18 +40,18 @@ defmodule Soroban.RPC.TransactionsPayloadTest do
     end
 
     test "with invalid struct" do
-      assert TransactionsPayload.new(nil) == {:error, :invalid_args}
+      assert LedgerTransactionsPayload.new(nil) == {:error, :invalid_args}
     end
 
     test "with nil start_ledger", %{
       cursor: cursor,
       limit: limit
     } do
-      %TransactionsPayload{
+      %LedgerTransactionsPayload{
         start_ledger: nil,
         pagination: %{cursor: ^cursor, limit: ^limit}
       } =
-        TransactionsPayload.new(
+        LedgerTransactionsPayload.new(
           start_ledger: nil,
           cursor: cursor,
           limit: limit
@@ -62,11 +62,11 @@ defmodule Soroban.RPC.TransactionsPayloadTest do
       start_ledger: start_ledger,
       limit: limit
     } do
-      %TransactionsPayload{
+      %LedgerTransactionsPayload{
         start_ledger: ^start_ledger,
         pagination: %{cursor: nil, limit: ^limit}
       } =
-        TransactionsPayload.new(
+        LedgerTransactionsPayload.new(
           start_ledger: start_ledger,
           cursor: nil,
           limit: limit
@@ -77,11 +77,11 @@ defmodule Soroban.RPC.TransactionsPayloadTest do
       start_ledger: start_ledger,
       cursor: cursor
     } do
-      %TransactionsPayload{
+      %LedgerTransactionsPayload{
         start_ledger: ^start_ledger,
         pagination: %{cursor: ^cursor, limit: nil}
       } =
-        TransactionsPayload.new(
+        LedgerTransactionsPayload.new(
           start_ledger: start_ledger,
           cursor: cursor,
           limit: nil
@@ -102,11 +102,11 @@ defmodule Soroban.RPC.TransactionsPayloadTest do
         pagination: %{cursor: cursor, limit: limit}
       }
 
-      assert TransactionsPayload.to_request_args(payload) == expected
+      assert LedgerTransactionsPayload.to_request_args(payload) == expected
     end
 
     test "with an invalid struct" do
-      assert TransactionsPayload.to_request_args(nil) == :error
+      assert LedgerTransactionsPayload.to_request_args(nil) == :error
     end
   end
 end

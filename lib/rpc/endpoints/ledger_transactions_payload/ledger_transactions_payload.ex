@@ -1,6 +1,8 @@
-defmodule Soroban.RPC.TransactionsPayload do
+defmodule Soroban.RPC.LedgerTransactionsPayload do
   @moduledoc """
-  `TransactionsPayload` struct definition.
+  `LedgerTransactionsPayload` struct definition.
+
+  It is a payload used for getTransactions and getLedger modules.
   """
   import Soroban.RPC.Helper
 

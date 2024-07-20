@@ -266,6 +266,7 @@ Unlike Horizon, this does not wait for transaction completion. It simply validat
 This supports all transactions, not only smart contract-related transactions.
 
 **Parameters**
+
 - `server`: `Soroban.RPC.Server` struct - The Soroban-RPC server to interact with.
 - `base64_envelope`: `<xdr.TransactionEnvelope>` - The signed transaction to broadcast (serialized in base64).
 
@@ -332,7 +333,7 @@ The getTransactions method return a detailed list of transactions starting from 
 **Parameters**
 
 - `server`: `Soroban.RPC.Server` struct - The Soroban-RPC server to interact with.
-- `TransactionsPayload`:
+- `LedgerTransactionsPayload`:
 
   - `start_ledger`: Stringified ledger sequence number to fetch events after (inclusive). This method will return an error if start_ledger is less than the oldest ledger stored in this node, or greater than the latest ledger seen by this node. If a cursor is included in the request, start_ledger must be omitted.
 
@@ -343,14 +344,14 @@ The getTransactions method return a detailed list of transactions starting from 
 **Example**
 
 ```elixir
-alias Soroban.RPC.TransactionsPayload
+alias Soroban.RPC.LedgerTransactionsPayload
 
 server = Soroban.RPC.Server.testnet()
 
 start_ledger = 600000
 limit = 2
 
-transactions_payload = TransactionsPayload.new(start_ledger: start_ledger, limit: limit)
+transactions_payload = LedgerTransactionsPayload.new(start_ledger: start_ledger, limit: limit)
 
 Soroban.RPC.get_transactions(server, transactions_payload)
 
@@ -585,6 +586,7 @@ If making multiple requests, clients should deduplicate any events received, bas
 By default soroban-rpc retains the most recent 24 hours of events.
 
 **Parameters**
+
 - `server`: `Soroban.RPC.Server` struct - The Soroban-RPC server to interact with.
 - `EventsPayload`:
 
@@ -667,6 +669,7 @@ The deployment and invocation of Soroban smart contracts is done through the `So
 #### Invoke contract function
 
 **Parameters**
+
 - `server`: `Soroban.RPC.Server` struct - The Soroban-RPC server to interact with.
 - `network_passphrase`: String - The network passphrase.
 - `contract_address`: Identifier of the contract to be invoked, encoded as `StrKey`.
